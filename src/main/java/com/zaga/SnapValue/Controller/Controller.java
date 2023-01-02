@@ -1,6 +1,5 @@
 package com.zaga.SnapValue.Controller;
 
-import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +26,13 @@ public class Controller {
 
 	// get all UserModels
 	@GetMapping
-	public List<UserModel> getAllUserModels() {
+	public Iterable<UserModel> getAllUserModels() {
 		return this.userRepository.findAll();
 	}
 
 	// get UserModel by id
 	@GetMapping("/{id}")
-	public UserModel getUserModelById(@PathVariable(value = "id") BigInteger UserModelId) {
+	public UserModel getUserModelById(@PathVariable(value = "id") long UserModelId) {
 		return this.userRepository.findById(UserModelId)
 				.orElseThrow(() -> new ResourceNotFoundException("UserModel not found with id :" + UserModelId));
 	}
@@ -46,7 +45,7 @@ public class Controller {
 
 	// update UserModel
 	@PutMapping("/{id}")
-	public UserModel updateUserModel(@RequestBody UserModel UserModel, @PathVariable("id") BigInteger UserModelId) {
+	public UserModel updateUserModel(@RequestBody UserModel UserModel, @PathVariable("id") long UserModelId) {
 		UserModel existingUserModel = this.userRepository.findById(UserModelId)
 				.orElseThrow(() -> new ResourceNotFoundException("UserModel not found with id :" + UserModelId));
 		existingUserModel.setUserName(UserModel.getUserName());
@@ -56,7 +55,7 @@ public class Controller {
 
 	// delete UserModel by id
 	@DeleteMapping("/{id}")
-	public ResponseEntity<UserModel> deleteUserModel(@PathVariable("id") BigInteger UserModelId) {
+	public ResponseEntity<UserModel> deleteUserModel(@PathVariable("id") long UserModelId) {
 		UserModel existingUserModel = this.userRepository.findById(UserModelId)
 				.orElseThrow(() -> new ResourceNotFoundException("UserModel not found with id :" + UserModelId));
 		this.userRepository.delete(existingUserModel);

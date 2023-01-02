@@ -1,6 +1,5 @@
 package com.zaga.SnapValue.model;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,11 +13,9 @@ public class UserModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public BigInteger UserId;
-	@Column(name = "FirstName")
-	public String FirstName;
-	@Column(name = "LastName")
-	public String LastName;
+	public long UserId;
+	@Column(name = "UserName")
+	public String UserName;
 	@Column(name = "UserAge")
 	public int UserAge;
 	@Column(name = "City")
@@ -36,12 +33,11 @@ public class UserModel {
 		super();
 	}
 
-	public UserModel(BigInteger userId, String firstName, String lastName, int userAge, String city, String branch,
-			int phone, String email, Date dateOfBirth) {
+	public UserModel(long userId, String userName, int userAge, String city, String branch, int phone, String email,
+			Date dateOfBirth) {
 		super();
 		UserId = userId;
-		FirstName = firstName;
-		LastName = lastName;
+		UserName = userName;
 		UserAge = userAge;
 		City = city;
 		Branch = branch;
@@ -50,28 +46,20 @@ public class UserModel {
 		DateOfBirth = dateOfBirth;
 	}
 
-	public BigInteger getUserId() {
+	public long getUserId() {
 		return UserId;
 	}
 
-	public void setUserId(BigInteger userId) {
+	public void setUserId(long userId) {
 		UserId = userId;
 	}
 
-	public String getFirstName() {
-		return FirstName;
+	public String getUserName() {
+		return UserName;
 	}
 
-	public void setFirstName(String firstName) {
-		FirstName = firstName;
-	}
-
-	public String getLastName() {
-		return LastName;
-	}
-
-	public void setLastName(String lastName) {
-		LastName = lastName;
+	public void setUserName(String userName) {
+		UserName = userName;
 	}
 
 	public int getUserAge() {
@@ -124,9 +112,8 @@ public class UserModel {
 
 	@Override
 	public String toString() {
-		return "UserModel [UserId=" + UserId + ", FirstName=" + FirstName + ", LastName=" + LastName + ", UserAge="
-				+ UserAge + ", City=" + City + ", Branch=" + Branch + ", Phone=" + Phone + ", Email=" + Email
-				+ ", DateOfBirth=" + DateOfBirth + "]";
+		return "UserModel [UserId=" + UserId + ", UserName=" + UserName + ", UserAge=" + UserAge + ", City=" + City
+				+ ", Branch=" + Branch + ", Phone=" + Phone + ", Email=" + Email + ", DateOfBirth=" + DateOfBirth + "]";
 	}
 
 }
